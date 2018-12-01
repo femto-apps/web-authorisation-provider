@@ -1,45 +1,20 @@
-const Authorisation = require('./modules/Authorisation')
-const Statement = require('./modules/Statement')
+const express = require('express')
 
-const authorisation = new Authorisation()
+const authorisation = new require('./modules/Authorisation')()
+// const authorisation = new Authorisation()
+
+// const app = express()
+// const port = 3000
+
+// app.get('/', (req, res) => res.send('Hello World!'))
+
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 authorisation.registerStatements([
   {
     effect: 'allow',
     action: 'hoster:GetObject',
     resource: 'hoster:object:*'
-  },
-  {
-    effect: 'allow',
-    action: ['hoster:DeleteObject', 'hoster:UpdateObject'],
-    resource: 'hoster:object:*',
-    condition: {
-      'owns hosted image': { $ensure: 'resource.owner._id != user._id' }
-    }
-  },
-  {
-    effect: 'allow',
-    action: ['hoster:DeleteObject', 'hoster:UpdateObject'],
-    resource: 'hoster:object:*',
-    condition: {
-      'owns hosted image': { $ensure: 'resource.owner._id != user._id' }
-    }
-  },
-  {
-    effect: 'allow',
-    action: ['hoster:DeleteObject', 'hoster:UpdateObject'],
-    resource: 'hoster:object:*',
-    condition: {
-      'owns hosted image': { $ensure: 'resource.owner._id != user._id' }
-    }
-  },
-  {
-    effect: 'allow',
-    action: ['hoster:DeleteObject', 'hoster:UpdateObject'],
-    resource: 'hoster:object:*',
-    condition: {
-      'owns hosted image': { $ensure: 'resource.owner._id != user._id' }
-    }
   },
   {
     effect: 'allow',
