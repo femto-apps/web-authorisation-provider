@@ -1,7 +1,7 @@
 const express = require('express')
 
-const authorisation = new require('./modules/Authorisation')()
-// const authorisation = new Authorisation()
+const Authorisation = require('./modules/Authorisation')
+const authorisation = new Authorisation()
 
 // const app = express()
 // const port = 3000
