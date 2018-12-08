@@ -55,4 +55,5 @@ app.post('/api/v1/authorised', (req, res) => {
   })
 })
 
-app.listen(3000, () => console.log(`Example app listening on port ${3000}!`))
+// TODO: change config format to something like config.get('port') or config.auth.port
+app.listen(config.config.auth.port, () => console.log(`Example app listening on port ${config.config.auth.port}!`))
