@@ -1,47 +1,41 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const Authorisation = require('./modules/Authorisation')
 const authorisation = new Authorisation()
 
-// const app = express()
-// const port = 3000
+/* 
+ * Register one or more statements for authentication.
+ * 
+ * @example <caption>Simple resource authentication</caption>
+ * {
+ *   effect: 'allow',
+ *   action: 'hoster:GetObject',
+ *   resource: 'hoster:object:*'
+ * }
+ * 
+ * @example <caption>Conditional resource authentication</caption>
+ * {
+ *   effect: 'allow',
+ *   action: ['hoster:DeleteObject', 'hoster:UpdateObject'],
+ *   resource: 'hoster:object:*',
+ *   condition: {
+ *     'owns hosted image': { $ensure: 'resource.owner._id == user._id' }
+ *   }
+ * }
+ */
+app.post('/api/v1/statement', (req, res) => {
+  // TODO: verify that the request came from a site
+  // TODO: verify that the site can effect the specified resource
 
-// app.get('/', (req, res) => res.send('Hello World!'))
+  authorisation.registerStatements(req.body)
+})
 
-// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+/*
+ * Checks whether a user can complete an action on the requested resource.
+ */
+app.get('/api/v1/authorised', (req, res) => {
+  authorisation.check(req.body.resource, req.body.user, req.body.action)
+})
 
-authorisation.registerStatements([
-  {
-    effect: 'allow',
-    action: 'hoster:GetObject',
-    resource: 'hoster:object:*'
-  },
-  {
-    effect: 'allow',
-    action: ['hoster:DeleteObject', 'hoster:UpdateObject'],
-    resource: 'hoster:object:*',
-    condition: {
-      'owns hosted image': { $ensure: 'resource.owner._id == user._id' }
-    }
-  }
-])
-
-let resource = {
-  type: 'hoster:object',
-  owner: {
-    _id: 'abc'
-  }
-}
-
-let user = {
-  _id: 'abc'
-}
-
-let action = 'hoster:DeleteObject'
-
-console.time('Auth check')
-for (let i = 0; i < 1000; i++) {
-  if (i % 100 === 0) console.log(i)
-  authorisation.check(resource, user, action)
-}
-console.timeEnd('Auth check')
+app.listen(config.port, () => console.log(`Example app listening on port ${port}!`))

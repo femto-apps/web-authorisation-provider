@@ -11,6 +11,7 @@ class Authorisation {
   }
 
   registerStatements(statements) {
+    // TODO: allow the same statement to be written multiple times, overwrite previous.
     this.statements = this.statements.concat(
       statements.map(statement =>
         statement instanceof Statement ? statement : new Statement(statement)
@@ -19,6 +20,7 @@ class Authorisation {
   }
 
   check(resource, user, action) {
+    // TODO: don't return a boolean, return the reason why it was denied
     let matched = false
 
     for (const statement of this.statements) {

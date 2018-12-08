@@ -37,6 +37,7 @@ class Statement {
     for (let [name, condition] of this.conditions) {
       if ('$ensure' in condition) {
         if (!SafeExec.run(condition['$ensure'], { user, resource, action })) {
+          // TODO: don't return false here, return which condition failed
           return false
         }
       }
