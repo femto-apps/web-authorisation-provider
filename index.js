@@ -10,6 +10,7 @@ const config = new Config()
 const app = express()
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 /* 
  * Register one or more statements for authentication.
@@ -54,5 +55,7 @@ app.post('/api/v1/authorised', (req, res) => {
     authorised: authorisation.check(req.body.resource, req.body.user, req.body.action)
   })
 })
+
+console.log(config)
 
 app.listen(config.site('port'), () => console.log(`Example app listening on port ${config.site('port')}!`))
