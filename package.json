@@ -1,5 +1,5 @@
 {
-  "name": "auth",
+  "name": "@femto-host/auth-server",
   "version": "1.0.0",
   "description": "Policy based authorisation",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@femto-host/config": "^1.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "vm2": "^3.6.4"

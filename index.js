@@ -1,11 +1,10 @@
-const express = require('express')
+const config = require('@femto-host/config')
 const bodyParser = require('body-parser')
+const express = require('express')
 
 const Authorisation = require('./modules/Authorisation')
-const Config = require('../../modules/Config')
 
 const authorisation = new Authorisation()
-const config = new Config()
 
 const app = express()
 
@@ -56,6 +55,4 @@ app.post('/api/v1/authorised', (req, res) => {
   })
 })
 
-console.log(config)
-
-app.listen(config.site('port'), () => console.log(`Example app listening on port ${config.site('port')}!`))
+app.listen(config.get('port'), () => console.log(`Example app listening on port ${config.get('port')}!`))
