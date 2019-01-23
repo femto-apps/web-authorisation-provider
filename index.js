@@ -1,6 +1,7 @@
 const config = require('@femto-host/config')
 const bodyParser = require('body-parser')
 const express = require('express')
+const morgan = require('morgan')
 
 const Authorisation = require('./modules/Authorisation')
 
@@ -10,6 +11,7 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(morgan(config.get('logFormat')))
 
 /* 
  * Register one or more statements for authentication.

@@ -1,3 +1,4 @@
 {
     port: 9031
+    logFormat: 'dev'
 }

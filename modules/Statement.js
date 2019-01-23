@@ -3,9 +3,9 @@ const Utils = require('./Utils')
 
 class Statement {
   constructor({ effect, action, resource, condition }) {
-    if (effect !== 'allow' && effect !== 'deny') throw `Statement has invalid effect value, ${effect}`
-    if (typeof action === 'undefined') throw `Statement must have an action, given ${action}`
-    if (typeof resource === 'undefined') throw `Statement must have a resource, given ${resource}`
+    if (effect !== 'allow' && effect !== 'deny') throw new Error(`Statement has invalid effect value, ${effect}`)
+    if (typeof action === 'undefined') throw new Error(`Statement must have an action, given ${action}`)
+    if (typeof resource === 'undefined') throw new Error(`Statement must have a resource, given ${resource}`)
 
     if (typeof action === 'string') action = [action]
     if (typeof resource === 'string') resource = [resource]
