@@ -56,10 +56,10 @@ app.post('/api/statement', async (req, res) => {
     })
   }
 
-  if (Array.isArray(req.body)) {
-    await authorisation.registerStatements(req.body)
+  if (Array.isArray(req.body.statements)) {
+    await authorisation.registerStatements(req.body.statements)
   } else {
-    await authorisation.registerStatement(req.body)
+    await authorisation.registerStatement(req.body.statements)
   }
 
   res.json({
