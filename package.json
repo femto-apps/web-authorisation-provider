@@ -13,7 +13,10 @@
     "@femto-host/config": "^1.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.5.2",
     "morgan": "^1.9.1",
+    "node-fetch": "^2.3.0",
     "vm2": "^3.6.4"
   },
   "devDependencies": {

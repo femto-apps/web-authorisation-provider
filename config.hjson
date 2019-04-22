@@ -1,4 +1,11 @@
 {
     port: 9031
     logFormat: 'dev'
+    mongo: {
+        uri: 'mongodb://localhost:27017/'
+        db: 'authorisationProvider'
+    },
+    authenticationProvider: {
+        uri: 'http://localhost:3001'
+    }
 }
