@@ -1,4 +1,4 @@
-const config = require('@femto-host/config')
+const config = require('@femto-apps/config')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const express = require('express')
